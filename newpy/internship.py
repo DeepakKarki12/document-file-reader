@@ -4,12 +4,12 @@ import pdfplumber
 import docx2txt
 import pandas as pd
 import time
-import pip
+# import pip
 from pptx import Presentation
 
 
 
-pip.main(["install", "openpyxl"])
+# pip.main(["install", "openpyxl"])
 counter=0
 
 
