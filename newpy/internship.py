@@ -42,12 +42,7 @@ if choice == "DocumentFiles":
             starting_page_no = st.number_input('enter the starting page number of document',value= 1)
             ending_page_no = st.number_input('enter the ending page number of document', value=1)
             total_pages = ending_page_no - starting_page_no
-            st.write(int(starting_page_no))
-            st.write(int(ending_page_no))
             if st.button("Process"):
-                file_details = {"filename": docx_file.name, "filetype": docx_file.type,
-                                "filesize": docx_file.size}
-                st.write(file_details)
                 for i in range(total_pages + 1):
                     loop = 1
                     try:
