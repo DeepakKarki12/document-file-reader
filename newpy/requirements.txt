@@ -5,3 +5,4 @@ pdfplumber==0.6.2
 pip==22.1
 python_pptx==0.6.21
 streamlit==1.9.0
+protobuf package<3.20
