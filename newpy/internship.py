@@ -25,15 +25,15 @@ def convert_to_audio(text):
 
 
 count = 0
-interface = "Please upload a file"
+interface = ""
 total_text = ""
 raw_text = ""
-st.title("Document Reader")
+# st.title("Document Reader")
 menu = ["DocumentFiles","ExcelFile","PPT"]
 choice = st.sidebar.selectbox("Menu",menu)
 
 if choice == "DocumentFiles":
-    st.subheader("DocumentFiles")
+    st.title("DocumentFiles")
     docx_file = st.file_uploader("Upload Document", type=["pdf","docx","txt"])
     if docx_file is not None:
         interface = "File has been uploaded"
@@ -68,37 +68,37 @@ if choice == "DocumentFiles":
                     time.sleep(2)
                 if loop == 1:
                     convert_to_audio(total_text)
-                st.write("If you last converted audio file were more than 1 hour than please wait for 10 minute")
-                st.write(len(total_text))
+#                 st.write("If you last converted audio file were more than 1 hour than please wait for 10 minute")
+#                 st.write(len(total_text))
 
         elif docx_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
             if st.button("Process"):
-                file_details = {"filename": docx_file.name, "filetype": docx_file.type,
-                                "filesize": docx_file.size}
-                st.write(file_details)
+#                 file_details = {"filename": docx_file.name, "filetype": docx_file.type,
+#                                 "filesize": docx_file.size}
+#                 st.write(file_details)
                 total_text = docx2txt.process(docx_file)
                 convert_to_audio(total_text)
                 # audio_file = open("textaud.mp3", "rb")
                 # st.audio(audio_file.read())
         elif docx_file.type == "text/plain":
             if st.button("Process"):
-                file_details = {"filename": docx_file.name, "filetype": docx_file.type,
-                                "filesize": docx_file.size}
-                st.write(file_details)
+#                 file_details = {"filename": docx_file.name, "filetype": docx_file.type,
+#                                 "filesize": docx_file.size}
+#                 st.write(file_details)
                 total_text = str(docx_file.read(), "utf-8")
                 convert_to_audio(total_text)
     elif docx_file is None:
         st.subheader(interface)
 
 if choice == "ExcelFile":
-    st.subheader("Dataset")
+    st.title("Dataset")
     data_file = st.file_uploader("Upload CSV", type=["xlsx"])
     if data_file is not None:
         interface = "file has been uploaded"
         st.subheader(interface)
         if st.button("Process"):
-            file_details = {"filename": data_file.name, "filetype": data_file.type,
-                            "filesize": data_file.size}
+#             file_details = {"filename": data_file.name, "filetype": data_file.type,
+#                             "filesize": data_file.size}
             xl = pd.ExcelFile(data_file)
             for sheet in xl.sheet_names:
                 file = pd.read_excel(xl, sheet_name=sheet)
@@ -111,13 +111,13 @@ if choice == "ExcelFile":
         st.subheader(interface)
 
 if choice == "PPT":
-    st.subheader("power_point")
+    st.title("PPT")
     data_file = st.file_uploader("Upload CSV", type=["pptx"])
     if data_file is not None:
         interface = "file has been uploaded"
         st.subheader(interface)
-        file_details = {"filename": data_file.name, "filetype": data_file.type,
-                        "filesize": data_file.size}
+#         file_details = {"filename": data_file.name, "filetype": data_file.type,
+#                         "filesize": data_file.size}
         final_text = ""
         # for eachfile in glob.glob("*pptx"):
         prs = Presentation(data_file)
